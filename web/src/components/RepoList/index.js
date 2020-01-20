@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import DupObjArrRemover from '../../utils/DupObjArrRemover';
 import './style.css';
 
 import RepoItem from '../RepoItem';
 
 function RepoList({ selectedLanguage }) {
-  const [repositories, setRepositories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [repositories, setRepositories] = useState([]);
 
   useEffect(() => {
     let language = selectedLanguage.replace('JavaScript', 'JS');
@@ -21,6 +22,7 @@ function RepoList({ selectedLanguage }) {
         response.data.total_count === 0
           ? setRepositories([])
           : setRepositories(response.data.items);
+
         setLoading(false);
         setError(false);
       })
@@ -45,7 +47,7 @@ function RepoList({ selectedLanguage }) {
       return (
         <ul>
           {repositories.map(repo => (
-            <RepoItem key={repo.id} repo={repo} />
+            <RepoItem key={repo.name} repo={repo} />
           ))}
         </ul>
       );

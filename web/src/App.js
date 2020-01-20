@@ -6,7 +6,7 @@ import Aside from './components/Aside';
 import Main from './components/Main';
 
 function App() {
-  const [selectedLanguage, setSelectedLanguage] = useState('C');
+  const [selectedLanguage, setSelectedLanguage] = useState('JavaScript');
 
   return (
     <div id='app'>
